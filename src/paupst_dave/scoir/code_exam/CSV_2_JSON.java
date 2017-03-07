@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.swing.JFileChooser;
+import javax.swing.text.DefaultCaret;
 
 /**
  * This class will create a form with which a User can specify a folder to be watched.
@@ -61,6 +62,9 @@ public class CSV_2_JSON extends javax.swing.JFrame {
         chooser.setCurrentDirectory(new java.io.File("."));
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.setAcceptAllFileFilterUsed(false);
+        
+        DefaultCaret caret = (DefaultCaret)txt_Info.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
     }
 
     /**
@@ -214,8 +218,8 @@ public class CSV_2_JSON extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 141, 0, 0);
         getContentPane().add(cmd_ClearError, gridBagConstraints);
 
+        txt_Info.setEditable(false);
         txt_Info.setRows(5);
-        txt_Info.setPreferredSize(new java.awt.Dimension(152, 92));
         jScrollPane1.setViewportView(txt_Info);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
