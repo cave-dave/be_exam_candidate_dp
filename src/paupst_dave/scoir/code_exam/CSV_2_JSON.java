@@ -458,7 +458,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                         if (phone.matches(Phone_REGEX)) {
                             if (!dirtyRecord) outputToWrite += "\tphone: \"" + phone + "\"";
                         } else {
-                            errorToWrite += line_Num + ",Incorrect format for PHONE_NUMBER field. ----- Input Given: " + phone + "\n";
+                            errorToWrite += line_Num + ",Incorrect format for PHONE_NUM field. ----- Input Given: " + phone + "\n";
                             dirtyRecord = true;
                             errorCount++;
                         }
