@@ -1,0 +1,6 @@
+LINE_NUM: 2
+ERROR_MSG: Incorrect format for INTERNAL_ID number.
+LINE_NUM: 2
+ERROR_MSG: Incorrect format for MIDDLE_NAME field.
+LINE_NUM: 2
+ERROR_MSG: Incorrect format for PHONE_NUMBER field. ----- Input Given: 570-262-04098
