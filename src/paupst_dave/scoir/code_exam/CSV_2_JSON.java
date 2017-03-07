@@ -359,7 +359,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
             final int COLUMN_AMOUNT = correctHeaders.length;
             
             // Local variables.
-            boolean errorsOccured = false, dirtyRecord = false;
+            boolean errorsOccurred = false, dirtyRecord = false;
             int errorCount = 0, line_Num = 1;
             String errorToWrite = "", outputToWrite = "";
             
@@ -380,7 +380,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                 }
                 if (!Arrays.equals(columns, correctHeaders)) {
                     errorWrite.write(line_Num + ",Incorrect Headers ----- Headers Given: " + Arrays.toString(columns).replaceAll(",", " - ") + "\n");
-                    errorsOccured = true;
+                    errorsOccurred = true;
                     errorCount++;
                 }
                 
@@ -443,19 +443,21 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                         outputToWrite += "\n}\n";
                         line_Num++;
                     } else {
-                        errorToWrite += line_Num + ",Incorrect format not enough columns. ----- Input Given: " + Arrays.toString(columns).replaceAll(",", " - ") + "\n";
+                        errorToWrite += line_Num + ",Incorrect amount of columns. ----- Input Given: " + Arrays.toString(columns).replaceAll(",", " - ") + "\n";
+                        errorsOccurred = true;
+                        errorCount++;
                         line_Num++;
                     }
                     
                     if (dirtyRecord) {
-                        errorsOccured = true;
+                        errorsOccurred = true;
                         errorWrite.write(errorToWrite);
                     } else {
                         outputWrite.write(outputToWrite);
                     }
                 }
                 
-                if (errorsOccured) {
+                if (errorsOccurred) {
                     txt_Info.append(errorCount + " errors occured in conversion of ' " + CSVFile.getName() + " '\n");
                 } else {
                     txt_Info.append("' " + CSVFile.getName() + " ' was converted successfully with 0 errors.\n");
