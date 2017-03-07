@@ -328,7 +328,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                             if (kind == ENTRY_CREATE && fileName.toString().contains(".csv") && !processed_files.contains(fileName.toString())) {
                                 txt_Info.append("------------------------------------------------\n"
                                         + "We have a new CSV file! ----- ' " + fileName.toString() + " '\n"
-                                        + "------------------------------------------------");
+                                        + "------------------------------------------------\n");
                                 processed_files.add(fileName.toString());
                                 processFile(new File(new File(getInputDirectory()), fileName.toString()));
                             }
