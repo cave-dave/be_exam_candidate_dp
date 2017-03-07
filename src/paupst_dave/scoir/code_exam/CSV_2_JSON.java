@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package guitest;
+package paupst_dave.scoir.code_exam;
 
 import java.awt.Toolkit;
 import java.io.BufferedReader;
@@ -86,14 +86,14 @@ public class CSV_2_JSON extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CSV to JSON Converter");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/guitest/scoir.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/paupst_dave/scoir/code_exam/scoir.jpg")));
         setResizable(false);
 
         txtField_InputDir.setEditable(false);
         txtField_InputDir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtField_InputDir.setText("Please select Input Directory");
 
-        cmd_LookupInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/dir.png"))); // NOI18N
+        cmd_LookupInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paupst_dave/scoir/code_exam/dir.png"))); // NOI18N
         cmd_LookupInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmd_LookupInputActionPerformed(evt);
@@ -111,7 +111,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
         txtField_OutputDir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtField_OutputDir.setText("Please select Output Directory");
 
-        cmd_LookupOutput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/dir.png"))); // NOI18N
+        cmd_LookupOutput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paupst_dave/scoir/code_exam/dir.png"))); // NOI18N
         cmd_LookupOutput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmd_LookupOutputActionPerformed(evt);
@@ -129,7 +129,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
         txtField_ErrorDir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtField_ErrorDir.setText("Please select Error Directory");
 
-        cmd_LookupError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guitest/dir.png"))); // NOI18N
+        cmd_LookupError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paupst_dave/scoir/code_exam/dir.png"))); // NOI18N
         cmd_LookupError.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmd_LookupErrorActionPerformed(evt);
@@ -308,37 +308,39 @@ public class CSV_2_JSON extends javax.swing.JFrame {
         public void run() {
             try {
             
-            WatchService watcher = FileSystems.getDefault().newWatchService();
-            Path dir = Paths.get(getInputDirectory());            
-            dir.register(watcher, ENTRY_CREATE);
+                WatchService watcher = FileSystems.getDefault().newWatchService();
+                Path dir = Paths.get(getInputDirectory());            
+                dir.register(watcher, ENTRY_CREATE);
 
-            while (inputDirectoryChosen.get() && outputDirectoryChosen.get() && errorDirectoryChosen.get()) {
-                WatchKey key;
-                try {
-                    key = watcher.take();
-                } catch (InterruptedException ex) {
-                    return;
-                }
+                while (inputDirectoryChosen.get() && outputDirectoryChosen.get() && errorDirectoryChosen.get()) {
+                    WatchKey key;
+                    try {
+                        key = watcher.take();
+                    } catch (InterruptedException ex) {
+                        return;
+                    }
 
-                if (inputDirectoryChosen.get() && outputDirectoryChosen.get() && errorDirectoryChosen.get()) {
-                    key.pollEvents().stream().forEach((event) -> {
-                        WatchEvent.Kind<?> kind = event.kind();
-                        WatchEvent<Path> ev = (WatchEvent<Path>) event;
-                        Path fileName = ev.context();
-                        if (kind == ENTRY_CREATE && fileName.toString().contains(".csv") && !processed_files.contains(fileName.toString())) {
-                            txt_Info.append("-------------------------\nWe have a new CSV file! ----- ' " + fileName.toString() + " '\n");
-                            processed_files.add(fileName.toString());
-                            processFile(new File(new File(getInputDirectory()), fileName.toString()));
-                        }
-                    });
-                } else {
-                    txt_Info.append("A new CSV file was detected but conversion cannot be performed without selecting all appropriate directories.\n");
+                    if (inputDirectoryChosen.get() && outputDirectoryChosen.get() && errorDirectoryChosen.get()) {
+                        key.pollEvents().stream().forEach((event) -> {
+                            WatchEvent.Kind<?> kind = event.kind();
+                            WatchEvent<Path> ev = (WatchEvent<Path>) event;
+                            Path fileName = ev.context();
+                            if (kind == ENTRY_CREATE && fileName.toString().contains(".csv") && !processed_files.contains(fileName.toString())) {
+                                txt_Info.append("------------------------------------------------\n"
+                                        + "We have a new CSV file! ----- ' " + fileName.toString() + " '\n"
+                                        + "------------------------------------------------");
+                                processed_files.add(fileName.toString());
+                                processFile(new File(new File(getInputDirectory()), fileName.toString()));
+                            }
+                        });
+                    } else {
+                        txt_Info.append("A new CSV file was detected but conversion cannot \nbe performed without selecting the appropriate directories.\n");
+                    }
+                    boolean valid = key.reset();
+                    if (!valid) {
+                        break;
+                    }
                 }
-                boolean valid = key.reset();
-                if (!valid) {
-                    break;
-                }
-            }
             
             } catch (IOException e) {}
         }
@@ -349,17 +351,17 @@ public class CSV_2_JSON extends javax.swing.JFrame {
          * @param CSVFile 
          */
         private void processFile(File CSVFile) {
+            // Constants
             final String Internal_ID_REGEX = "^[0-9]{8}$";
             final int Name_LENGTH = 15;
             final String Phone_REGEX = "^[0-9]{3}\\-[0-9]{3}\\-[0-9]{4}$";
             final String[] correctHeaders = {"INTERNAL_ID", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "PHONE_NUM"};
-            final int COLUMN_AMOUNT = 5;
+            final int COLUMN_AMOUNT = correctHeaders.length;
             
-            boolean errorsOccured = false;
-            boolean dirtyRecord = false;
-            int errorCount = 0;
-            String errorToWrite = "";
-            String outputToWrite = "";
+            // Local variables.
+            boolean errorsOccured = false, dirtyRecord = false;
+            int errorCount = 0, line_Num = 1;
+            String errorToWrite = "", outputToWrite = "";
             
             try {                                
                 BufferedReader read = new BufferedReader(new FileReader(CSVFile));                
@@ -377,33 +379,31 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                     columns = line.split(",");
                 }
                 if (!Arrays.equals(columns, correctHeaders)) {
-                    errorWrite.write("1,Incorrect Headers ----- Headers Given: " + Arrays.toString(columns).replaceAll(",", " - ") + "\n");
+                    errorWrite.write(line_Num + ",Incorrect Headers ----- Headers Given: " + Arrays.toString(columns).replaceAll(",", " - ") + "\n");
                     errorsOccured = true;
                     errorCount++;
                 }
                 
-                int line_Num = 2;
+                line_Num++;
                 
                 while((line = read.readLine()) != null) {
-                    String tokens[] = line.split(",");
+                    columns = line.split(",");
                     dirtyRecord = false;
                     
-                    if (tokens.length == COLUMN_AMOUNT) {
+                    if (columns.length == COLUMN_AMOUNT) {
                     	outputToWrite = "{\n";
                     	errorToWrite = "";
                         
-                        String internal_ID = tokens[0];
+                        String internal_ID = columns[0];
                         if (internal_ID.matches(Internal_ID_REGEX)) {
-                            outputToWrite += "\tid: " + internal_ID + ",";
+                            outputToWrite += "\tid: " + internal_ID + ",\n\tname: {\n";
                         } else {
                             errorToWrite += line_Num + ",Incorrect format for INTERNAL_ID number. ----- Input Given: " + internal_ID + "\n";
                             dirtyRecord = true;
                             errorCount++;
                         }
                         
-                        outputToWrite += "\n\tname: {\n";
-                        
-                        String firstName = tokens[1];
+                        String firstName = columns[1];
                         if (firstName.length() > 0 && firstName.length() <= Name_LENGTH) {
                             if (!dirtyRecord) outputToWrite += "\t\tfirst: \"" + firstName + "\",\n";
                         } else {
@@ -412,30 +412,28 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                             errorCount++;
                         }
                         
-                        String middleName = tokens[2];
+                        String middleName = columns[2];
                         if (middleName.length() > 0 && middleName.length() <= Name_LENGTH) {
-                        	if (!dirtyRecord) outputToWrite += "\t\tmiddle: \"" + middleName + "\",\n";
+                            if (!dirtyRecord) outputToWrite += "\t\tmiddle: \"" + middleName + "\",\n";
                         }
-                        else if (tokens[2].length() > Name_LENGTH) {
+                        else if (columns[2].length() > Name_LENGTH) {
                             errorToWrite += line_Num + ",Incorrect format for MIDDLE_NAME field. ----- Input Given: " + middleName + "\n";
                             dirtyRecord = true;
                             errorCount++;
                         }
                         
-                        String lastName = tokens[3];
+                        String lastName = columns[3];
                         if (lastName.length() > 0 && lastName.length() <= Name_LENGTH) {
-                        	if (!dirtyRecord) outputToWrite += "\t\tlast: \"" + lastName + "\"";
+                            if (!dirtyRecord) outputToWrite += "\t\tlast: \"" + lastName + "\"\n\t},\n";
                         } else {
                             errorToWrite += line_Num + ",Incorrect format for LAST_NAME field. ----- Input Given: " + lastName + "\n";
                             dirtyRecord = true;
                             errorCount++;
                         }
                         
-                        outputToWrite += "\n\t},\n";
-                        
-                        String phone = tokens[4];
+                        String phone = columns[4];
                         if (phone.matches(Phone_REGEX)) {
-                        	if (!dirtyRecord) outputToWrite += "\tphone: \"" + phone + "\"";
+                            if (!dirtyRecord) outputToWrite += "\tphone: \"" + phone + "\"";
                         } else {
                             errorToWrite += line_Num + ",Incorrect format for PHONE_NUMBER field. ----- Input Given: " + phone + "\n";
                             dirtyRecord = true;
@@ -445,7 +443,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                         outputToWrite += "\n}\n";
                         line_Num++;
                     } else {
-                        errorToWrite += line_Num + ",Incorrect format not enough columns. ----- Input Given: " + Arrays.toString(tokens).replaceAll(",", " - ") + "\n";
+                        errorToWrite += line_Num + ",Incorrect format not enough columns. ----- Input Given: " + Arrays.toString(columns).replaceAll(",", " - ") + "\n";
                         line_Num++;
                     }
                     
@@ -470,8 +468,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                 
                 if (!CSVFile.delete()) {
                     txt_Info.append("Error deleting ' " + CSVFile.getName() + " ', file was not deleted.\n");
-                }
-                
+                }                
                 
             } catch (IOException e) {}
         }
