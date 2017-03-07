@@ -484,7 +484,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                 if (errorsOccurred) {
                     txt_Info.append(errorCount + " errors occured in conversion of ' " + CSVFile.getName() + " '\n" + goodRecordCount + " records were successfully converted.\n");
                 } else {
-                    txt_Info.append("' " + CSVFile.getName() + " ' was converted successfully with 0 errors.\n");
+                    txt_Info.append("' " + CSVFile.getName() + " ' was converted successfully with " + goodRecordCount + " records and  0 errors.\n");
                     errorFile.delete();                    
                 }
                 
