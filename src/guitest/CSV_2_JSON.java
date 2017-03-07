@@ -389,7 +389,8 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                     dirtyRecord = false;
                     
                     if (tokens.length == COLUMN_AMOUNT) {
-                        outputToWrite += "{\n";
+                    	outputToWrite = "{\n";
+                    	errorToWrite = "";
                         
                         String internal_ID = tokens[0];
                         if (internal_ID.matches(Internal_ID_REGEX)) {
@@ -404,7 +405,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                         
                         String firstName = tokens[1];
                         if (firstName.length() > 0 && firstName.length() <= Name_LENGTH) {
-                            outputToWrite += "\t\tfirst: \"" + firstName + "\",\n";
+                            if (!dirtyRecord) outputToWrite += "\t\tfirst: \"" + firstName + "\",\n";
                         } else {
                             errorToWrite += line_Num + ",Incorrect format for FIRST_NAME field. ----- Input Given: " + firstName + "\n";
                             dirtyRecord = true;
@@ -413,7 +414,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                         
                         String middleName = tokens[2];
                         if (middleName.length() > 0 && middleName.length() <= Name_LENGTH) {
-                            outputToWrite += "\t\tmiddle: \"" + middleName + "\",\n";
+                        	if (!dirtyRecord) outputToWrite += "\t\tmiddle: \"" + middleName + "\",\n";
                         }
                         else if (tokens[2].length() > Name_LENGTH) {
                             errorToWrite += line_Num + ",Incorrect format for MIDDLE_NAME field. ----- Input Given: " + middleName + "\n";
@@ -423,7 +424,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                         
                         String lastName = tokens[3];
                         if (lastName.length() > 0 && lastName.length() <= Name_LENGTH) {
-                            outputToWrite += "\t\tlast: \"" + lastName + "\"";
+                        	if (!dirtyRecord) outputToWrite += "\t\tlast: \"" + lastName + "\"";
                         } else {
                             errorToWrite += line_Num + ",Incorrect format for LAST_NAME field. ----- Input Given: " + lastName + "\n";
                             dirtyRecord = true;
@@ -434,7 +435,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                         
                         String phone = tokens[4];
                         if (phone.matches(Phone_REGEX)) {
-                            outputToWrite += "\tphone: \"" + phone + "\"";
+                        	if (!dirtyRecord) outputToWrite += "\tphone: \"" + phone + "\"";
                         } else {
                             errorToWrite += line_Num + ",Incorrect format for PHONE_NUMBER field. ----- Input Given: " + phone + "\n";
                             dirtyRecord = true;
