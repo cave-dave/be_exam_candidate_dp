@@ -60,7 +60,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
         chooser = new JFileChooser();
         chooser.setCurrentDirectory(new java.io.File("."));
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        chooser.setAcceptAllFileFilterUsed(false);        
+        chooser.setAcceptAllFileFilterUsed(false);
     }
 
     /**
@@ -466,7 +466,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                         outputToWrite += "\n}\n";
                         line_Num++;
                     } else {
-                        errorToWrite += line_Num + ",Incorrect amount of columns. ----- Input Given: " + Arrays.toString(columns).replaceAll(",", " - ") + "\n";
+                        errorToWrite = line_Num + ",Incorrect amount of columns. ----- Input Given: " + Arrays.toString(columns).replaceAll(",", " - ") + "\n";
                         dirtyRecord = true;
                         errorCount++;
                         line_Num++;
