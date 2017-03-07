@@ -71,6 +71,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         txtField_InputDir = new javax.swing.JTextField();
         cmd_LookupInput = new javax.swing.JButton();
@@ -87,11 +88,20 @@ public class CSV_2_JSON extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CSV to JSON Converter");
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/paupst_dave/scoir/code_exam/scoir.jpg")));
-        setResizable(false);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         txtField_InputDir.setEditable(false);
         txtField_InputDir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtField_InputDir.setText("Please select Input Directory");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 330;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 0);
+        getContentPane().add(txtField_InputDir, gridBagConstraints);
 
         cmd_LookupInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paupst_dave/scoir/code_exam/dir.png"))); // NOI18N
         cmd_LookupInput.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +109,12 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                 cmd_LookupInputActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 10);
+        getContentPane().add(cmd_LookupInput, gridBagConstraints);
 
         cmd_ClearInput.setText("Clear Selection");
         cmd_ClearInput.addActionListener(new java.awt.event.ActionListener() {
@@ -106,10 +122,30 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                 cmd_ClearInputActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 143, 0, 0);
+        getContentPane().add(cmd_ClearInput, gridBagConstraints);
 
         txtField_OutputDir.setEditable(false);
         txtField_OutputDir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtField_OutputDir.setText("Please select Output Directory");
+        txtField_OutputDir.setCaretPosition(29);
+        txtField_OutputDir.setPreferredSize(new java.awt.Dimension(163, 21));
+        txtField_OutputDir.setSelectionEnd(29);
+        txtField_OutputDir.setSelectionStart(29);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 330;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 0);
+        getContentPane().add(txtField_OutputDir, gridBagConstraints);
 
         cmd_LookupOutput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paupst_dave/scoir/code_exam/dir.png"))); // NOI18N
         cmd_LookupOutput.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +153,12 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                 cmd_LookupOutputActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 10);
+        getContentPane().add(cmd_LookupOutput, gridBagConstraints);
 
         cmd_ClearOutput.setText("Clear Selection");
         cmd_ClearOutput.addActionListener(new java.awt.event.ActionListener() {
@@ -124,10 +166,27 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                 cmd_ClearOutputActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 142, 0, 0);
+        getContentPane().add(cmd_ClearOutput, gridBagConstraints);
 
         txtField_ErrorDir.setEditable(false);
         txtField_ErrorDir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtField_ErrorDir.setText("Please select Error Directory");
+        txtField_ErrorDir.setPreferredSize(new java.awt.Dimension(163, 21));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 330;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 0);
+        getContentPane().add(txtField_ErrorDir, gridBagConstraints);
 
         cmd_LookupError.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paupst_dave/scoir/code_exam/dir.png"))); // NOI18N
         cmd_LookupError.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +194,12 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                 cmd_LookupErrorActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 10);
+        getContentPane().add(cmd_LookupError, gridBagConstraints);
 
         cmd_ClearError.setText("Clear Selection");
         cmd_ClearError.addActionListener(new java.awt.event.ActionListener() {
@@ -142,71 +207,29 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                 cmd_ClearErrorActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 141, 0, 0);
+        getContentPane().add(cmd_ClearError, gridBagConstraints);
 
-        txt_Info.setColumns(20);
         txt_Info.setRows(5);
+        txt_Info.setPreferredSize(new java.awt.Dimension(152, 92));
         jScrollPane1.setViewportView(txt_Info);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtField_InputDir, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmd_LookupInput))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtField_OutputDir, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmd_LookupOutput))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtField_ErrorDir, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmd_LookupError))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(cmd_ClearInput))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(cmd_ClearOutput))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(cmd_ClearError)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtField_InputDir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmd_LookupInput))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmd_ClearInput)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtField_OutputDir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmd_LookupOutput))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmd_ClearOutput)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtField_ErrorDir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmd_LookupError))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmd_ClearError)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 376;
+        gridBagConstraints.ipady = 60;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(6, 10, 11, 10);
+        getContentPane().add(jScrollPane1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
