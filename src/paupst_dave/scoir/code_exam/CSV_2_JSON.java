@@ -360,7 +360,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
             
             // Local variables.
             boolean errorsOccurred = false, dirtyRecord = false;
-            int errorCount = 0, line_Num = 1;
+            int goodRecordCount = 0, errorCount = 0, line_Num = 1;
             String errorToWrite = "", outputToWrite = "";
             
             try {                                
@@ -454,11 +454,12 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                         errorWrite.write(errorToWrite);
                     } else {
                         outputWrite.write(outputToWrite);
+                        goodRecordCount++;
                     }
                 }
                 
                 if (errorsOccurred) {
-                    txt_Info.append(errorCount + " errors occured in conversion of ' " + CSVFile.getName() + " '\n");
+                    txt_Info.append(errorCount + " errors occured in conversion of ' " + CSVFile.getName() + " '\n" + goodRecordCount + " records were successfully converted.\n");
                 } else {
                     txt_Info.append("' " + CSVFile.getName() + " ' was converted successfully with 0 errors.\n");
                     errorFile.delete();                    
