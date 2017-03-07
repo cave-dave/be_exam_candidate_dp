@@ -444,7 +444,7 @@ public class CSV_2_JSON extends javax.swing.JFrame {
                         line_Num++;
                     } else {
                         errorToWrite += line_Num + ",Incorrect amount of columns. ----- Input Given: " + Arrays.toString(columns).replaceAll(",", " - ") + "\n";
-                        errorsOccurred = true;
+                        dirtyRecord = true;
                         errorCount++;
                         line_Num++;
                     }
